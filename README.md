@@ -7,9 +7,10 @@
 (base) Yixins-MacBook-Pro-2:Downloads yixinli$ gunzip gcc-10.2-bin.tar.gz
 
 (base) Yixins-MacBook-Pro-2:Downloads yixinli$ sudo tar -xvf gcc-10.2-bin.tar -C /
+```
 
 then, download openmpi-4.0.5 from web
-
+```
 (base) Yixins-MacBook-Pro-2:~ yixinli$ cd Downloads
 
 (base) Yixins-MacBook-Pro-2:Downloads yixinli$ cd openmpi-4.0.5
@@ -57,7 +58,7 @@ mpirun -np 2 ~/QE/qe-6.7/bin/pw.x inp si.vc_relax > si.vc_relax.out
 ```
  > Reference: https://www.youtube.com/watch?v=uWhZOwfmV2s&ab_channel=PhysWhiz
 
-Basically this means we've completed our installations
+Basically, this means we've completed our installations
 
 ----------------------------------------------------------------
 
