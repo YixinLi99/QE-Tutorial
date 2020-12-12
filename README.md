@@ -50,7 +50,7 @@ then, download openmpi-4.0.5 from web
 
 (base) Yixins-MacBook-Pro-2:example01 yixinli$ mpirun -np 4 ~/QE/qe-6.7/bin/pw.x < si.band.input > si.band.output
 
-$ curl -o C.UPF https://www.quantum-espresso.org/upf_files/C.pz-rrkjus.UPF
+curl -o C.UPF https://www.quantum-espresso.org/upf_files/C.pz-rrkjus.UPF
 ```
 or 
 ```
@@ -64,15 +64,65 @@ Basically, this means we've completed our installations
 
 First, Let's start calculations on band energies:
 
-###### Transfer VASP file into Scf file 
+###### Transfer VASP file into scf file 
 
-(transfer direct coordinates into Cartesian coordinates)
-
- > https://chemistry.stackexchange.com/questions/136836/converting-fractional-coordinates-into-cartesian-coordinates-for-crystallography
+[transfer](http://www.densityflow.com/p2p.php)
 
 ###### Step1: vc-relax (结构优化）
 cif into QE Coordinates  
+[理论](https://www.bilibili.com/video/av32743444)
+
+get the structure 
+change into vc-relax calcualtions:
+```
+&CONTROL
+  calculation='vc-relax', 
+  restart_mode='from_scratch'
+  pseudo_dir='../pseudo/', 
+  prefix='C2H4'
+  outdir='../tmp',  
+  forc_conv_thr=1.0d-4, 
+/
+&SYSTEM
+  ibrav= 0, 
+  nat= 6, 
+  ntyp= 2,  
+  ecutwfc = 50, 
+  ecutrho = 500,
+/
+&ELECTRONS
+  conv_thr = 1.0d-8
+  mixing_beta = 0.7d0
+/
+&IONS
+  ion_dynamics='bfgs'
+/
+&CELL
+  cell_dynamics='bfgs'
+  press=0.0
+  press_conv_thr=0.5
+/
+ATOMIC_SPECIES
+  C 12.0107 C.UPF
+  H 1.00794 H.UPF
+CELL_PARAMETERS (angstrom)
+  15.8753162577  0.0000000000  0.0000000000
+   0.0000000000 15.8753162577  0.0000000000
+   0.0000000000  0.0000000000  2.5702137021
+ATOMIC_POSITIONS (crystal)
+   H  0.4130446861  0.5134911523  0.2499998588
+   H  0.4954148472  0.5878745676  0.2499998765
+   C  0.4823608513  0.5195314039  0.2500002242
+   C  0.5176391487  0.4804685961  0.7499997758
+   H  0.5045851528  0.4121254324  0.7500001235
+   H  0.5869553139  0.4865088477  0.7500001412
+K_POINTS {automatic}
+  1 1 9 0 0 0
+  ```
+  File name: /qe-6.7/polypedot/C2H4.vc_relax.in
 
 ###### Step2: scf calculations 
+
+
 ###### Step3: nscf calculations 
 ###### Step4: band calculations 
