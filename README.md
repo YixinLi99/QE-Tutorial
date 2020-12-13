@@ -109,6 +109,8 @@ change into vc-relax calcualtions:
 ATOMIC_SPECIES
   C 12.0107 C.UPF
   H 1.00794 H.UPF
+  #Errors may occur when you dont have ATOMIC_SPECIES UPF, you need to go to Quantum Espresso.com pseudo section, click on the element you want in the peroidic table, and find the most satisfied version of your UPF
+  #Click on that, there will be a web link then use it!
 CELL_PARAMETERS (angstrom)
   15.8753162577  0.0000000000  0.0000000000
    0.0000000000 15.8753162577  0.0000000000
