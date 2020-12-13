@@ -170,9 +170,55 @@ H             0.5027515032        0.3325586768        0.7500001235
 H             0.6662516316        0.4803674379        0.7500001412
 K_POINTS {automatic}
   1 1 9 0 0 0
- ```
- 
- 
-
+ ``` 
+You will get ndnd number from the output file which is useful for next step
 ###### Step3: nscf calculations 
+
+```
+&CONTROL
+  calculation='bands', 
+  restart_mode='from_scratch'
+  pseudo_dir='../pseudo/', 
+  prefix='C2H4'
+  outdir='../tmp',  
+  verbosity='high',
+  tprnfor=.true., 
+  tstress=.true.
+  forc_conv_thr=1.0d-4, 
+/
+&SYSTEM
+  ibrav= 0, 
+  nat= 6, 
+  ntyp= 2, 
+  ecutwfc = 50, 
+  ecutrho = 500,
+  nbnd=12
+/
+&ELECTRONS
+  conv_thr = 1.0d-8
+  mixing_beta = 0.7d0
+/
+&IONS
+/
+&CELL
+/
+ATOMIC_SPECIES
+  C 12.0107 C.UPF
+  H 1.00794 H.UPF
+CELL_PARAMETERS (angstrom)
+   8.213159486  -0.312252721   0.000000000
+  -0.312202472   8.272552668   0.000000000
+   0.000000000   0.000000000   2.518404031
+ATOMIC_POSITIONS (crystal)
+H             0.3337483684        0.5196325621        0.2499998588
+H             0.4972484968        0.6674413232        0.2499998765
+C             0.4679216036        0.5355006009        0.2500002242
+C             0.5320783964        0.4644993991        0.7499997758
+H             0.5027515032        0.3325586768        0.7500001235
+H             0.6662516316        0.4803674379        0.7500001412
+K_POINTS {automatic}
+287
+  ```
+For K_Points, you need to installed Xcryden to choose your k-point path
+
 ###### Step4: band calculations 
